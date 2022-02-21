@@ -1,0 +1,22 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "go",
+            "env": {
+                "DB_NAME":      "starwars",
+                "DB_PASSWORD":  "starwars",
+                "DB_USERNAME":  "starwars",
+                "REDIS_ADDR":   "localhost",
+                "DB_HOST":      "localhost",
+                "HTTP_PORT":    3000,
+                "DB_PORT":      "27017",
+                "REDIS_PORT":   6379
+            }
+        }
+    ]
+}

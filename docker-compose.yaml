@@ -1,0 +1,44 @@
+version: "3.4"
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo-volume:/data
+    environment:
+      - MONGO_INITDB_DATABASSE=starwars
+      - MONGO_INITDB_ROOT_USERNAME=starwars
+      - MONGO_INITDB_ROOT_PASSWORD=starwars
+    command: mongod --bind_ip mongodb
+    ports:
+      - 27017:27017
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  # app:
+  #   build: .
+  #   container_name: api
+  #   ports:
+  #     - 8080:8080
+  #   environment:
+  #     "SWAGGER_HOST": 0.0.0.0:8080
+  #     "HTTP_PORT": 8080
+  #     "HTTP_SHUTDOWN_TIMEOUT": 1s
+  #     "HTTP_READ_TIMEOUT": 30s
+  #     "HTTP_WRITE_TIMEOUT": 30s
+  #     "DB_HOST": postgres
+  #     "DB_NAME": starwars
+  #     "DB_PORT": 5432
+  #     "DB_USER": postgres
+  #   volumes:
+  #     - .:/go/src/
+  #   depends_on:
+  #     elasticsearch:
+  #       condition: service_healthy
+volumes:
+  mongo-volume:
+    driver: local

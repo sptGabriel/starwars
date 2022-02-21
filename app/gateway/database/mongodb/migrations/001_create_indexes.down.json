@@ -1,0 +1,6 @@
+[
+    {
+      "dropIndexes": "planets",
+      "index": "unique_name"
+    }
+  ]

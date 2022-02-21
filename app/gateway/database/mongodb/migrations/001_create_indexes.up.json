@@ -1,0 +1,13 @@
+[{
+    "createIndexes": "planets",
+    "indexes": [
+      {
+        "key": {
+          "name": 1
+        },
+        "name": "unique_name",
+        "unique": true,
+        "background": true
+      }
+    ]
+  }]

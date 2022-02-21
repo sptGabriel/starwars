@@ -1,0 +1,209 @@
+definitions:
+  planets.CreatePlanetRequest:
+    properties:
+      climate:
+        type: string
+      name:
+        type: string
+      terrain:
+        type: string
+    type: object
+  planets.Planet:
+    properties:
+      climate:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      quantityFilmAppearances:
+        type: integer
+      terrain:
+        type: string
+    type: object
+  responses.Error:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/planets:
+    delete:
+      consumes:
+      - application/json
+      description: Do delete an planet
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.Error'
+      tags:
+      - Planets
+    get:
+      consumes:
+      - application/json
+      description: Do get an planet by Name
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/planets.Planet'
+            type: array
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.Error'
+      tags:
+      - Planets
+    post:
+      consumes:
+      - application/json
+      description: Do create a new planet
+      parameters:
+      - description: Body
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/planets.CreatePlanetRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: ""
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.Error'
+      tags:
+      - Planets
+  /api/v1/planets/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Do get an planet by ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/planets.Planet'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.Error'
+      tags:
+      - Planets
+  /api/v1/planets/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Do get an planet by Name
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/planets.Planet'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/responses.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/responses.Error'
+      tags:
+      - Planets
+swagger: "2.0"
