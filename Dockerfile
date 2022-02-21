@@ -1,7 +1,7 @@
 # Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
-# Start from golang:1.12-alpine base image
-FROM golang:1.16.4-alpine
+# Start from golang:1.17.7-alpine3.15 base image
+FROM golang:1.17.7-alpine3.15
 
 # The latest alpine images don't have some tools like (`git` and `bash`).
 # Adding git, bash and openssh to the image
@@ -24,7 +24,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go app
-RUN go build -o main ./cmd
+RUN go build -o main ./cmd/api
 
 # Expose port 8080 to the outside world
 EXPOSE 8080

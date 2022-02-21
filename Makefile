@@ -8,13 +8,20 @@ compile:
 	@echo "==> Compiling star-wars..."
 	go build -o build/server cmd/api/main.go
 
-.PHONY: dev-up
-dev-up:
+.PHONY: dev-local
+dev-local:
+	@echo ">>>>> Starting server application..."
+	go mod tidy
+	docker-compose up --d redis mongodb
+	go run cmd/api/main.go
+
+.PHONY: dev-docker-up
+dev-docker-up:
 	@echo ">>>>> Starting server application..."
 	docker-compose up --build -d
 
-.PHONY: dev-down
-dev-down:
+.PHONY: dev-docker-down
+dev-docker-down:
 	@echo ">>>>> Shutting application..."
 	docker-compose down
 
