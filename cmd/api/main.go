@@ -23,13 +23,13 @@ import (
 	redisService "github.com/sptGabriel/starwars/app/gateway/services/cache/redis"
 	"github.com/sptGabriel/starwars/app/gateway/services/starwars/swapi"
 	"github.com/sptGabriel/starwars/app/usecases"
+	"github.com/sptGabriel/starwars/docs/swagger"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 )
 
 func main() {
-	// Load Config
 	cfg, err := config.ReadConfig(".env")
 	if err != nil {
 		panic(fmt.Errorf("unable to load config: %w", err))
@@ -67,7 +67,9 @@ func main() {
 	planetUC := usecases.NewUseCase(planetRepository, swapi)
 	planetHandler := planetHandler.NewHandler(planetUC)
 
-	router := api.NewRouter(planetHandler)
+	swagger.SwaggerInfo.Host = cfg.API.SwaggerHost
+	router := api.NewRouter(planetHandler, cfg)
+
 	server := &http.Server{
 		Handler:      middlewares.Recovery(router),
 		Addr:         fmt.Sprintf("0.0.0.0:%d", cfg.API.Port),

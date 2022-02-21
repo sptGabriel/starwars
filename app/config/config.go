@@ -20,7 +20,7 @@ type APIConfig struct {
 	Port         int           `env:"HTTP_PORT" default:"8080"`
 	ReadTimeout  time.Duration `env:"READ_TIMEOUT" default:"5s"`
 	WriteTimeout time.Duration `env:"WRITE_TIMEOUT" default:"15s"`
-	SwaggerHost  string        `env:"SWAGGER_HOST"`
+	SwaggerHost  string        `env:"SWAGGER_HOST" default:"0.0.0.0:8080"`
 }
 
 type MongoConfig struct {

@@ -33,7 +33,7 @@ func RunMigrations(client *mongo.Client, mongoConfig config.MongoConfig) error {
 		return err
 	}
 
-	if err = m.Up(); err != nil && errors.Is(err, migrate.ErrNoChange) {
+	if err = m.Up(); err != nil && !errors.Is(err, migrate.ErrNoChange) {
 		return err
 	}
 
