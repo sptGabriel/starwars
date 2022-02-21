@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
-	"github.com/sptGabriel/starwars/app/config"
 	"github.com/sptGabriel/starwars/app/gateway/api/middlewares"
 	"github.com/sptGabriel/starwars/app/gateway/api/responses"
 	httpswagger "github.com/swaggo/http-swagger"
@@ -18,7 +17,7 @@ type planetHandler interface {
 	ListPlanets(r *http.Request) responses.Response
 }
 
-func NewRouter(planetHandler planetHandler, config *config.Config) http.Handler {
+func NewRouter(planetHandler planetHandler) http.Handler {
 	router := chi.NewRouter()
 
 	router.Get("/docs/v1/starwars/swagger", func(w http.ResponseWriter, r *http.Request) {

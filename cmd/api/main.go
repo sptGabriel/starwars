@@ -68,7 +68,7 @@ func main() {
 	planetHandler := planetHandler.NewHandler(planetUC)
 
 	swagger.SwaggerInfo.Host = cfg.API.SwaggerHost
-	router := api.NewRouter(planetHandler, cfg)
+	router := api.NewRouter(planetHandler)
 
 	server := &http.Server{
 		Handler:      middlewares.Recovery(router),
